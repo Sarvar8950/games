@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="navbar.css">
+	<style>
+		.tiktak {
+			position: relative;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.tiktak .l1 {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.tiktak input {
+			position: relative;
+			width: 70px;
+			height: 70px;
+			text-align: center;
+			font-size: 40px;
+            cursor: pointer;
+		}
+		.turn{
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+</head>
+
+<body>
+    <nav>
+        <div class="left">
+            <a href="./index.html">
+                <img src="./images/logo.png" alt="logo">
+            </a>
+        </div>
+        <div class="right">
+            <a href="./index.html">Home</a>
+            <a href="./sudoku.html">Sudoku Solver</a>
+            <a href="./tictactoe.html">Tic Tac Toe</a>
+            <a href="./rockpaper.html">Rock Paper</a>
+        </div>
+        <div class="bar">
+            <i class="fa-solid fa-bars" onclick="navbar()"></i>
+        </div>
+    </nav>
+	<div class='tiktak'>
+		<h1>Tic Tac Toe</h1>
+		<div class="part">
+			<p class="turn">Player 1 Turn</p>
+			<div class="body">
+				<div class="l1">
+					<input type="text" onclick="fun1(); edit()" id="l1" />
+					<input type="text" onclick="fun2(); edit()" id="l2" />
+					<input type="text" onclick="fun3(); edit()" id="l3" />
+				</div>
+				<div class="l1">
+					<input type="text" onclick="fun4(); edit()" id="l4" />
+					<input type="text" onclick="fun5(); edit()" id="l5" />
+					<input type="text" onclick="fun6(); edit()" id="l6" />
+				</div>
+				<div class="l1">
+					<input type="text" onclick="fun7(); edit()" id="l7" />
+					<input type="text" onclick="fun8(); edit()" id="l8" />
+					<input type="text" onclick="fun9(); edit()" id="l9" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="./script.js"></script>
+	<script>
+		var turn = document.querySelector(".turn")
+		var l1 = document.getElementById("l1")
+		var l2 = document.getElementById("l2")
+		var l3 = document.getElementById("l3")
+		var l4 = document.getElementById("l4")
+		var l5 = document.getElementById("l5")
+		var l6 = document.getElementById("l6")
+		var l7 = document.getElementById("l7")
+		var l8 = document.getElementById("l8")
+		var l9 = document.getElementById("l9")
+		var a = 0
+		var step = 0
+		function edit() {
+			// console.log(l1.value, l2.value, l3.value, l4.value, l5.value, l6.value, l7.value, l8.value, l9.value) 
+			if((l1.value == "X" && l2.value == "X" && l3.value == "X") || (l1.value == "X" && l5.value == "X" && l9.value == "X") || (l1.value == "X" && l4.value == "X" && l7.value == "X") || (l2.value == "X" && l5.value == "X" && l8.value == "X") || (l3.value == "X" && l6.value == "X" && l9.value == "X") || (l3.value == "X" && l5.value == "X" && l7.value == "X") || (l4.value == "X" && l5.value == "X" && l6.value == "X") || (l7.value == "X" && l8.value == "X" && l9.value == "X")) 
+			{
+				alert("Player X won")
+				location.reload();
+			}
+			else if ((l1.value == "0" && l2.value == "0" && l3.value == "0") || (l1.value == "0" && l5.value == "0" && l9.value == "0") || (l1.value == "0" && l4.value == "0" && l7.value == "0") || (l2.value == "0" && l5.value == "0" && l8.value == "0") || (l3.value == "0" && l6.value == "0" && l9.value == "0") || (l3.value == "0" && l5.value == "0" && l7.value == "0") || (l4.value == "0" && l5.value == "0" && l6.value == "0") || (l7.value == "0" && l8.value == "0" && l9.value == "0")) 
+			{
+				alert("Player 0 won")
+				location.reload();
+			} 
+			else if(step > 7) 
+			{
+				alert("Match Draw")
+				location.reload();
+			}
+			
+			step++
+
+			if(step % 2 == 0) {
+				turn.innerText = "Player 1 Turn"
+			} else {
+				turn.innerText = "Player 2 Turn"
+			}
+		}
+		function fun1() {
+			if(a == 0) {
+				l1.value = "X"
+				l1.disabled = true
+				a = 1
+			} else {
+				l1.value = "0"
+				l1.disabled = true
+				a = 0
+			}
+		}
+		function fun2() {
+			if(a == 0) {
+				l2.value = "X"
+				l2.disabled = true
+				a = 1
+			} else {
+				l2.value = "0"
+				l2.disabled = true
+				a = 0
+			}
+		}
+		function fun3() {
+			if(a == 0) {
+				l3.value = "X"
+				l3.disabled = true
+				a = 1
+			} else {
+				l3.value = "0"
+				l3.disabled = true
+				a = 0
+			}
+		}
+		function fun4() {
+			if(a == 0) {
+				l4.value = "X"
+				l4.disabled = true
+				a = 1
+			} else {
+				l4.value = "0"
+				l4.disabled = true
+				a = 0
+			}
+		}
+		function fun5() {
+			if(a == 0) {
+				l5.value = "X"
+				l5.disabled = true
+				a = 1
+			} else {
+				l5.value = "0"
+				l5.disabled = true
+				a = 0
+			}
+		}
+		function fun6() {
+			if(a == 0) {
+				l6.value = "X"
+				l6.disabled = true
+				a = 1
+			} else {
+				l6.value = "0"
+				l6.disabled = true
+				a = 0
+			}
+		}
+		function fun7() {
+			if(a == 0) {
+				l7.value = "X"
+				l7.disabled = true
+				a = 1
+			} else {
+				l7.value = "0"
+				l7.disabled = true
+				a = 0
+			}
+		}
+		function fun8() {
+			if(a == 0) {
+				l8.value = "X"
+				l8.disabled = true
+				a = 1
+			} else {
+				l8.value = "0"
+				l8.disabled = true
+				a = 0
+			}
+		}
+		function fun9() {
+			if(a == 0) {
+				l9.value = "X"
+				l9.disabled = true
+				a = 1
+			} else {
+				l9.value = "0"
+				l9.disabled = true
+				a = 0
+			}
+		}
+	</script>
+
+</body>
+
+</html>

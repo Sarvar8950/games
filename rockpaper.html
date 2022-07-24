@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Rock Paper Scissor</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        .body {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            /* align-items: center; */
+            width: 100%;
+        }
+
+        body h1 {
+            text-align: center;
+        }
+        img{
+            cursor: pointer;
+        }
+
+        @media (max-width : 570px) {
+            .body img {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="left">
+            <a href="./index.html">
+                <img src="./images/logo.png" alt="logo">
+            </a>
+        </div>
+        <div class="right">
+            <a href="./index.html">Home</a>
+            <a href="./sudoku.html">Sudoku Solver</a>
+            <a href="./tictactoe.html">Tic Tac Toe</a>
+            <a href="./rockpaper.html">Rock Paper</a>
+        </div>
+        <div class="bar">
+            <i class="fa-solid fa-bars" onclick="navbar()"></i>
+        </div>
+    </nav>
+    <div class="body">
+        <img src="./images/rock.png" alt="rock" onclick="rock()" />
+        <img src="./images//paper.png" alt="paper" onclick="paper()" />
+        <img src="./images/scissor.png" alt="scissor" onclick="scissor()" />
+    </div>
+
+    <h1 id="result">Result</h1>
+
+    <script>
+        var result = document.getElementById("result")
+        var arr = ['rock', 'paper', 'scissor']
+
+        function rock() {
+            var a = Math.floor((Math.random() * 10) % 3)
+            setTimeout(() => {
+                if (a == 0) {
+                    result.innerText = "Match Draw"
+                } else if (a == 1) {
+                    result.innerText = "Computer Won"
+                } else {
+                    result.innerText = "You Won"
+                }
+            }, 500)
+            result.innerText = "Loading..."
+        }
+        function paper() {
+            var a = Math.floor((Math.random() * 10) % 3)
+            setTimeout(() => {
+                if (a == 0) {
+                    result.innerText = "You Won"
+                } else if (a == 1) {
+                    result.innerText = "Match Draw"
+                } else {
+                    result.innerText = "Computer Won"
+                }
+            }, 500)
+            result.innerText = "Loading..."
+        }
+        function scissor() {
+            var a = Math.floor((Math.random() * 10) % 3)
+            setTimeout(() => {
+                if (a == 0) {
+                    result.innerText = "Computer Won"
+                } else if (a == 1) {
+                    result.innerText = "You Won"
+                } else {
+                    result.innerText = "Match Draw"
+                }
+            }, 500)
+            result.innerText = "Loading..."
+        }
+
+    </script>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

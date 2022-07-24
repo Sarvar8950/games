@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sudoku Solver</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="navbar.css">
+	<style>
+		input {
+			width: 18px;
+			margin: 5px 2px;
+		}
+
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		h1{
+			text-align: center;
+		}
+		.output{
+			letter-spacing: 14px;
+			line-height: 2.3;
+		}
+		.part{
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+		.body{
+			display: flex;
+			flex-direction: column;
+		}
+		button{
+			padding: 8px 16px;
+			background: rgb(62, 238, 27);
+			border: none;
+			outline: none;
+			cursor: pointer;
+			border-radius: 4px;
+			font-size: 20px;
+			color: #fff;
+			margin-top: 10px;
+		}
+		@media (max-width : 700px) {
+			.part{
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				align-items: center;
+			}
+			.output{
+				letter-spacing: 10px;
+				line-height: 2.3;
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<nav>
+        <div class="left">
+            <a href="./index.html">
+                <img src="./images/logo.png" alt="logo">
+            </a>
+        </div>
+        <div class="right">
+            <a href="./index.html">Home</a>
+            <a href="./sudoku.html">Sudoku Solver</a>
+            <a href="./tictactoe.html">Tic Tac Toe</a>
+            <a href="./rockpaper.html">Rock Paper</a>
+        </div>
+        <div class="bar">
+            <i class="fa-solid fa-bars" onclick="navbar()"></i>
+        </div>
+    </nav>
+	<h1>Sudoku Solver</h1>
+	<div class="part">
+
+		<div class="body">
+			<div class="l1">
+				<input type="number" value="0" id="l11">
+				<input type="number" value="0" id="l12">
+				<input type="number" value="0" id="l13">
+				<input type="number" value="0" id="l14">
+				<input type="number" value="0" id="l15">
+				<input type="number" value="0" id="l16">
+				<input type="number" value="0" id="l17">
+				<input type="number" value="0" id="l18">
+				<input type="number" value="0" id="l19">
+			</div>
+			<div class="l2">
+				<input type="number" value="0" id="l21">
+				<input type="number" value="0" id="l22">
+				<input type="number" value="0" id="l23">
+				<input type="number" value="0" id="l24">
+				<input type="number" value="0" id="l25">
+				<input type="number" value="0" id="l26">
+				<input type="number" value="0" id="l27">
+				<input type="number" value="0" id="l28">
+				<input type="number" value="0" id="l29">
+			</div>
+			<div class="l3">
+				<input type="number" value="0" id="l31">
+				<input type="number" value="0" id="l32">
+				<input type="number" value="0" id="l33">
+				<input type="number" value="0" id="l34">
+				<input type="number" value="0" id="l35">
+				<input type="number" value="0" id="l36">
+				<input type="number" value="0" id="l37">
+				<input type="number" value="0" id="l38">
+				<input type="number" value="0" id="l39">
+			</div>
+			<div class="l4">
+				<input type="number" value="0" id="l41">
+				<input type="number" value="0" id="l42">
+				<input type="number" value="0" id="l43">
+				<input type="number" value="0" id="l44">
+				<input type="number" value="0" id="l45">
+				<input type="number" value="0" id="l46">
+				<input type="number" value="0" id="l47">
+				<input type="number" value="0" id="l48">
+				<input type="number" value="0" id="l49">
+			</div>
+			<div class="l5">
+				<input type="number" value="0" id="l51">
+				<input type="number" value="0" id="l52">
+				<input type="number" value="0" id="l53">
+				<input type="number" value="0" id="l54">
+				<input type="number" value="0" id="l55">
+				<input type="number" value="0" id="l56">
+				<input type="number" value="0" id="l57">
+				<input type="number" value="0" id="l58">
+				<input type="number" value="0" id="l59">
+			</div>
+			<div class="l6">
+				<input type="number" value="0" id="l61">
+				<input type="number" value="0" id="l62">
+				<input type="number" value="0" id="l63">
+				<input type="number" value="0" id="l64">
+				<input type="number" value="0" id="l65">
+				<input type="number" value="0" id="l66">
+				<input type="number" value="0" id="l67">
+				<input type="number" value="0" id="l68">
+				<input type="number" value="0" id="l69">
+			</div>
+			<div class="l7">
+				<input type="number" value="0" id="l71">
+				<input type="number" value="0" id="l72">
+				<input type="number" value="0" id="l73">
+				<input type="number" value="0" id="l74">
+				<input type="number" value="0" id="l75">
+				<input type="number" value="0" id="l76">
+				<input type="number" value="0" id="l77">
+				<input type="number" value="0" id="l78">
+				<input type="number" value="0" id="l79">
+			</div>
+			<div class="l8">
+				<input type="number" value="0" id="l81">
+				<input type="number" value="0" id="l82">
+				<input type="number" value="0" id="l83">
+				<input type="number" value="0" id="l84">
+				<input type="number" value="0" id="l85">
+				<input type="number" value="0" id="l86">
+				<input type="number" value="0" id="l87">
+				<input type="number" value="0" id="l88">
+				<input type="number" value="0" id="l89">
+			</div>
+			<div class="l9">
+				<input type="number" value="0" id="l91">
+				<input type="number" value="0" id="l92">
+				<input type="number" value="0" id="l93">
+				<input type="number" value="0" id="l94">
+				<input type="number" value="0" id="l95">
+				<input type="number" value="0" id="l96">
+				<input type="number" value="0" id="l97">
+				<input type="number" value="0" id="l98">
+				<input type="number" value="0" id="l99">
+			</div>
+			<button onclick="solve()">Solve</button>
+		</div>
+	
+		<div class="output">
+			<h1>Solution</h1>
+		</div>
+
+	</div>
+
+	<script src="./script.js"></script>
+	<script>
+		function solve() {
+
+			var output = document.querySelector(".output")
+			var l11 = +document.getElementById("l11").value
+			var l12 = +document.getElementById("l12").value
+			var l13 = +document.getElementById("l13").value
+			var l14 = +document.getElementById("l14").value
+			var l15 = +document.getElementById("l15").value
+			var l16 = +document.getElementById("l16").value
+			var l17 = +document.getElementById("l17").value
+			var l18 = +document.getElementById("l18").value
+			var l19 = +document.getElementById("l19").value
+			var l21 = +document.getElementById("l21").value
+			var l22 = +document.getElementById("l22").value
+			var l23 = +document.getElementById("l23").value
+			var l24 = +document.getElementById("l24").value
+			var l25 = +document.getElementById("l25").value
+			var l26 = +document.getElementById("l26").value
+			var l27 = +document.getElementById("l27").value
+			var l28 = +document.getElementById("l28").value
+			var l29 = +document.getElementById("l29").value
+			var l31 = +document.getElementById("l31").value
+			var l32 = +document.getElementById("l32").value
+			var l33 = +document.getElementById("l33").value
+			var l34 = +document.getElementById("l34").value
+			var l35 = +document.getElementById("l35").value
+			var l36 = +document.getElementById("l36").value
+			var l37 = +document.getElementById("l37").value
+			var l38 = +document.getElementById("l38").value
+			var l39 = +document.getElementById("l39").value
+			var l41 = +document.getElementById("l41").value
+			var l42 = +document.getElementById("l42").value
+			var l43 = +document.getElementById("l43").value
+			var l44 = +document.getElementById("l44").value
+			var l45 = +document.getElementById("l45").value
+			var l46 = +document.getElementById("l46").value
+			var l47 = +document.getElementById("l47").value
+			var l48 = +document.getElementById("l48").value
+			var l49 = +document.getElementById("l49").value
+			var l51 = +document.getElementById("l51").value
+			var l52 = +document.getElementById("l52").value
+			var l53 = +document.getElementById("l53").value
+			var l54 = +document.getElementById("l54").value
+			var l55 = +document.getElementById("l55").value
+			var l56 = +document.getElementById("l56").value
+			var l57 = +document.getElementById("l57").value
+			var l58 = +document.getElementById("l58").value
+			var l59 = +document.getElementById("l59").value
+			var l61 = +document.getElementById("l61").value
+			var l62 = +document.getElementById("l62").value
+			var l63 = +document.getElementById("l63").value
+			var l64 = +document.getElementById("l64").value
+			var l65 = +document.getElementById("l65").value
+			var l66 = +document.getElementById("l66").value
+			var l67 = +document.getElementById("l67").value
+			var l68 = +document.getElementById("l68").value
+			var l69 = +document.getElementById("l69").value
+			var l71 = +document.getElementById("l71").value
+			var l72 = +document.getElementById("l72").value
+			var l73 = +document.getElementById("l73").value
+			var l74 = +document.getElementById("l74").value
+			var l75 = +document.getElementById("l75").value
+			var l76 = +document.getElementById("l76").value
+			var l77 = +document.getElementById("l77").value
+			var l78 = +document.getElementById("l78").value
+			var l79 = +document.getElementById("l79").value
+			var l81 = +document.getElementById("l81").value
+			var l82 = +document.getElementById("l82").value
+			var l83 = +document.getElementById("l83").value
+			var l84 = +document.getElementById("l84").value
+			var l85 = +document.getElementById("l85").value
+			var l86 = +document.getElementById("l86").value
+			var l87 = +document.getElementById("l87").value
+			var l88 = +document.getElementById("l88").value
+			var l89 = +document.getElementById("l89").value
+			var l91 = +document.getElementById("l91").value
+			var l92 = +document.getElementById("l92").value
+			var l93 = +document.getElementById("l93").value
+			var l94 = +document.getElementById("l94").value
+			var l95 = +document.getElementById("l95").value
+			var l96 = +document.getElementById("l96").value
+			var l97 = +document.getElementById("l97").value
+			var l98 = +document.getElementById("l98").value
+			var l99 = +document.getElementById("l99").value
+
+			var arr = [
+				[l11, l12, l13, l14, l15, l16, l17, l18, l19],
+				[l21, l22, l23, l24, l25, l26, l27, l28, l29],
+				[l31, l32, l33, l34, l35, l36, l37, l38, l39],
+				[l41, l42, l43, l44, l45, l46, l47, l48, l49],
+				[l51, l52, l53, l54, l55, l56, l57, l58, l59],
+				[l61, l62, l63, l64, l65, l66, l67, l68, l69],
+				[l71, l72, l73, l74, l75, l76, l77, l78, l79],
+				[l81, l82, l83, l84, l85, l86, l87, l88, l89],
+				[l91, l92, l93, l94, l95, l96, l97, l98, l99],
+			]
+
+			if (sudoku(0, 0, arr)) {
+				var s = ""
+				for (var i = 0; i < 9; i++) {
+					for (var j = 0; j < 9; j++) {
+						s += arr[i][j] + " "
+					}
+					s += "<br />"
+				}
+				output.innerHTML = s
+			} else {
+				alert("Not valid input")
+				window.location.reload();
+			}
+		}
+
+
+		function sudoku(ci, cj, cur) {
+			if (ci >= 9) {
+				return true
+			}
+			var nci = ci
+			var ncj = cj
+			if (ncj + 1 < 9) {
+				ncj++
+			} else {
+				nci++
+				ncj = 0
+			}
+			if (cur[ci][cj] != 0) {
+				return sudoku(nci, ncj, cur)
+			} else {
+				for (var i = 1; i <= 9; i++) {
+					if (check(ci, cj, cur, i)) {
+						cur[ci][cj] = i
+						if (sudoku(ci, cj, cur)) {
+							return true
+						}
+						cur[ci][cj] = 0
+					}
+				}
+				return false
+			}
+		}
+
+		function check(i, j, board, ans) {
+			for (var x = 0; x < 9; x++) {
+				if (board[i][x] == ans || board[i][x] > 9 || board[i][j] < 0) {
+					return false
+				}
+			}
+			for (var x = 0; x < 9; x++) {
+				if (board[x][j] == ans || board[i][x] > 9 || board[i][j] < 0) {
+					return false
+				}
+			}
+			var ai = i - (i % 3)
+			var aj = j - (j % 3)
+			for (var k = 0; k < 3; k++) {
+				for (var l = 0; l < 3; l++) {
+					if (board[ai + k][aj + l] == ans) {
+						return false
+					}
+				}
+			}
+			return true
+		}
+
+	</script>
+
+</body>
+
+</html>
